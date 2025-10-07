@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* src/styles.css */
+
+/* Custom CSS for the glowing button effect */
+:root {
+  --glow-color: hsl(180 100% 60%); /* اللون الأساسي للوهج */
+  --button-bg: hsl(180 100% 20%); /* لون خلفية الزر */
+}
+
+.glowing-btn {
+  position: relative;
+  background-color: var(--button-bg);
+  border: 0.15em solid var(--glow-color);
+  border-radius: 0.6em;
+  padding: 0.8em 1.2em; /* زودنا الـ padding عشان الزر يكون أكبر */
+  cursor: pointer;
+  font-family: "Arial", sans-serif; /* استخدم خط واضح */
+  font-size: 1.5em; /* كبرنا الخط */
+  font-weight: bold; /* خليناه عريض */
+  color: var(--glow-color); /* لون النص نفس لون الوهج */
+  text-shadow: 0 0 0.8em hsl(0 0% 100% / 0.3); /* ظل خفيف للنص */
+  box-shadow: inset 0 0 0.6em var(--glow-color), 0 0 0.6em var(--glow-color); /* وهج داخلي وخارجي */
+  transition: all 0.3s ease-in-out;
+  outline: none; /* إزالة الخط الأزرق عند الضغط */
+}
+
+/* تأثير الوهج عند التحويم (hover) والضغط (active) */
+.glowing-btn::before {
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--glow-color);
+  filter: blur(2em); /* تأثير الضباب للوهج تحت الزر */
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6); /* شكل الوهج */
+  transition: all 0.3s ease-in-out;
+}
+
+.glowing-btn:hover {
+  color: #000; /* لون النص أسود عند التحويم */
+  background-color: var(--glow-color); /* خلفية الزر نفس لون الوهج */
+  box-shadow: inset 0 0 0.6em var(--glow-color), 0 0 0.6em var(--glow-color);
+  text-shadow: none; /* إزالة ظل النص */
+}
+
+.glowing-btn:hover::before {
+  opacity: 1; /* زيادة وضوح الوهج عند التحويم */
+}
+
+.glowing-btn:active {
+  box-shadow: 0 0 0.6em var(--glow-color); /* وهج عند الضغط */
+  transform: scale(0.98); /* تصغير خفيف للزر عند الضغط */
+}
+
+/* الأسطر اللي بتشغل Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
